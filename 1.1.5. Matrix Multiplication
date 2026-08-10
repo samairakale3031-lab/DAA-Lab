@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int r1, c1;
+    // Read dimensions of Matrix A
+    if (scanf("%d %d", &r1, &c1) != 2) return 0;
+
+    // Read elements of Matrix A
+    int matrix_a[r1][c1];
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c1; j++) {
+            scanf("%d", &matrix_a[i][j]);
+        }
+    }
+
+    int r2, c2;
+    // Read dimensions of Matrix B
+    if (scanf("%d %d", &r2, &c2) != 2) return 0;
+
+    // Check if multiplication is possible
+    if (c1 != r2) {
+        printf("Invalid input\n");
+        return 0;
+    }
+
+    // Read elements of Matrix B only if valid
+    int matrix_b[r2][c2];
+    for (int i = 0; i < r2; i++) {
+        for (int j = 0; j < c2; j++) {
+            scanf("%d", &matrix_b[i][j]);
+        }
+    }
+
+    // Initialize and calculate the product matrix
+    int result[r1][c2];
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < c1; k++) {
+                result[i][j] += matrix_a[i][k] * matrix_b[k][j];
+            }
+        }
+    }
+
+    // Print the resulting product matrix with trailing spaces
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            printf("%d ", result[i][j]); // Modified to always print a space after the number
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
