@@ -1,0 +1,76 @@
+/*#include <stdio.h>
+
+    for (i = 0; i < V; i++) {
+        p = adjList[i];
+
+        while (p != NULL) {
+            q = p->next;
+
+            while (q != NULL) {
+                if (p->vertex > q->vertex) {
+                    temp = p->vertex;
+                    p->vertex = q->vertex;
+                    q->vertex = temp;
+                }
+
+                q = q->next;
+            }
+
+            p = p->next;
+        }
+    }
+}
+
+// DFS traversal
+void DFS(int vertex) {
+    Node* temp;
+
+    visited[vertex] = 1;
+
+    printf("%d ", vertex);
+
+    temp = adjList[vertex];
+
+    while (temp != NULL) {
+        if (!visited[temp->vertex]) {
+            DFS(temp->vertex);
+        }
+
+        temp = temp->next;
+    }
+}
+
+int main() {
+    int V, E;
+    int u, v;
+    int start;
+    int i;
+
+    // Input number of vertices and edges
+    scanf("%d %d", &V, &E);
+
+    // Initialize graph and visited array
+    for (i = 0; i < V; i++) {
+        adjList[i] = NULL;
+        visited[i] = 0;
+    }
+
+    // Input directed edges
+    for (i = 0; i < E; i++) {
+        scanf("%d %d", &u, &v);
+        addEdge(u, v);
+    }
+
+    // Sort adjacency lists
+    sortAdjList(V);
+
+    // Input starting vertex
+    scanf("%d", &start);
+
+    // Perform DFS
+    DFS(start);
+
+    printf("\n");
+
+    return 0;
+}
